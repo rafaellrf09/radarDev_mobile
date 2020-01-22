@@ -1,11 +1,11 @@
 import socketio from "socket.io-client";
 
-const socket = socketio('http://10.22.1.67:5000', {
+const socket = socketio('https://serverdevradar.herokuapp.com', {
     autoConnect : false
 });
 
 function subscribeToNewDevs(subscribeFunction) {
-    socket.on("new-dev", subscribeFunction); 
+    socket.on("new-dev", subscribeFunction);
 }
 
 function connect(latitude, longitude, techs) {
@@ -16,10 +16,6 @@ function connect(latitude, longitude, techs) {
     };
 
     socket.connect();
-
-    socket.on("message", text => {
-        console.log(text)
-    })
 }
 
 function disconnect() {

@@ -52,17 +52,22 @@ function Main({ navigation }) {
     }
 
     async function loadDevs() {
-        const { latitude, longitude } = currentRegion
-        let techLowerCase = techs.toLowerCase()
-        const response = await api.get('/search', {
-            params: {
-                latitude,
-                longitude,
-                techs: techLowerCase
-            }
-        })
-        setDevs(response.data.devs)
-        setupWebsocket();
+        try {
+            console.log("CU")
+            const { latitude, longitude } = currentRegion
+            let techLowerCase = techs.toLowerCase()
+            const response = await api.get('/search', {
+                params: {
+                    latitude,
+                    longitude,
+                    techs: techLowerCase
+                }
+            })
+            setDevs(response.data.devs)
+            setupWebsocket();
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     function handleRegionChange(region) {
